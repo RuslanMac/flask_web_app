@@ -9,6 +9,8 @@
             $.post('/translate', {
                 text: $(sourceElem).val()
             }).done(function(response) {
+
+
                 $(destElem).text(response['text']['def'][0]['tr'][0]['text']);
                 
             }).fail(function() {
@@ -30,8 +32,19 @@
                                ">Translate please</a>
                 </span>
 	       </form>
-	<span id="translate1">
+    <div>
+        <h5>Translation: </h5>
+	   <span id="translate1">
         
-    </span>
+        </span><br>
+
+        <h5>Synonim: </h5>
+        <span id="synonims">
+            
+        </span><br>
+        <h4>Add word</h4>
+        {{ wtf.quick_for(form)  }}
+
+    </div>
 
 {% endblock %}

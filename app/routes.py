@@ -80,8 +80,8 @@ def edit_profile():
 @app.route('/search', methods = ['GET','POST'])
 @login_required
 def search():
-	
-	return render_template('search.html', title = 'Search')
+	form = AddWordForm()
+	return render_template('search.html', title = 'Search', form=form)
 
 @app.route('/games')
 @login_required

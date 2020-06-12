@@ -31,8 +31,6 @@ class RegistrationForm(FlaskForm):
 			raise ValidationError('Please use a different email address.')
 
 class AddWordForm(FlaskForm):
-	english_word = StringField('English word')
-	russian_word = StringField('Russian word')
 	submit = SubmitField('Submit')
 
 class EditProfileForm(FlaskForm):
