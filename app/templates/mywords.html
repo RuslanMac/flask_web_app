@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block app_content %}
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">English</th>
+      <th scope="col">Russian</th>
+      <th scope="col">Remarks</th>
+    </tr>
+  </thead>
+</table>
+
+	  {% for word in words %}
+        {% include '_words.html' %}
+    {% endfor %}
+    {% if previous_url %}
+    <a href="{{ previous_url }}">Previous page</a>
+    {% endif %}
+    {% if next_url %}
+    <a href="{{ next_url }}">Next page</a>
+    {% endif %}
+
+{% endblock %}

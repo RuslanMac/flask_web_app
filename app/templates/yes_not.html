@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block scripts %}
+	<script type="text/javascript" src=" https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript">
+	var points = 1;
+	function Next(answer) {
+		if (answer == 1)
+		{
+			
+			points = points + 1;
+			$("#idps").text(points);
+		}
+		else
+		{
+			points = points - 1;
+			$("#idps").text(points);
+		}
+
+		// body...
+	}
+	</script>
+{% endblock %}
+{% block app_content %}
+<div class="card border-success mb-3" style="max-width: 18rem;">
+	
+
+	
+	<span id="eng"></span>
+	<span id="rus"></span>
+	<h5 id="idsc">Points: </h5>
+	<span id="idps"></span>
+
+</div>
+
+	<button type="button" class="btn btn-success" onclick="Next(1)">Yes</button>
+	<button type="button" class="btn btn-danger"  onclick="Next(0)">No</button>
+	
+{% endblock %}

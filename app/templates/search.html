@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block scripts %}
+    
+
+    <script type="text/javascript" src=" https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        function translate(sourceElem, destElem) {
+            $.post('/translate', {
+                text: $(sourceElem).val()
+            }).done(function(response) {
+                $(destElem).text(response['text']['def'][0]['tr'][0]['text']);
+                
+            }).fail(function() {
+                
+                $(destElem).text("Server is not available ");
+            });
+            
+        }
+    </script>
+{% endblock %}
+{% block app_content %}
+    <form class="form-inline">
+  		<label class="sr-only" for="inlineFormInputName2">Nametx</label>
+  		<input type="text" class="form-control mb-2 mr-sm-2" id="word1" placeholder="Write a word here">
+  	     <span id="textid">
+                    <a href="javascript:translate(
+                                '#word1',
+                                '#translate1')
+                               ">Translate please</a>
+                </span>
+	       </form>
+	<span id="translate1">
+        
+    </span>
+
+{% endblock %}
