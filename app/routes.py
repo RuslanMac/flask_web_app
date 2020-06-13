@@ -76,12 +76,10 @@ def edit_profile():
 		return redirect(url_for('edit_profile'))
 	return render_template('edit_profile.html', title='Edit Profile', form = form)
 
-
-@app.route('/search', methods = ['GET','POST'])
+@app.route('/search')
 @login_required
 def search():
-	form = AddWordForm()
-	return render_template('search.html', title = 'Search', form=form)
+	return render_template('search.html', title = 'Search' )
 
 @app.route('/games')
 @login_required
@@ -93,6 +91,15 @@ def games():
 def translate_text():
 	return jsonify({'text': translate(request.form['text'])})
 
+@app.route('/add_words', methods=['POST'])
+@login_required
+def add_wordsx():
+	word = Word(english = request.form['eng']  ,russian = request.form['russian'] ,user_id = current_user.id)
+	db.session.add(word)
+	db.session.commit()
+	flash('The word has been added in the dictionary ! ')
+	return render_template('search.html', title='Search')
+	
 
 
 
