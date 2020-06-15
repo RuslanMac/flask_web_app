@@ -30,6 +30,8 @@ class RegistrationForm(FlaskForm):
 		if user is not None:
 			raise ValidationError('Please use a different email address.')
 
+	
+
 class AddWordForm(FlaskForm):
 	submit = SubmitField('Submit')
 

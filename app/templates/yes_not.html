@@ -3,24 +3,82 @@
 {% block scripts %}
 	<script type="text/javascript" src=" https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript">
-	var points = 1;
-	function Next(answer) {
-		if (answer == 1)
-		{
-			
-			points = points + 1;
-			$("#idps").text(points);
-		}
-		else
-		{
-			points = points - 1;
-			$("#idps").text(points);
-		}
+	var words;
+	var i=0;
+	var t=0;
+    var k=0;
+    var isCorrect;
+    var score=1;
+	$(document).ready(getWords());
+	function getWords() {
+            $.post('/getNext').done(function(response) {
+                words = response;
+                alert("it works");
+                
+            }).fail(function() {
+                
+                alert("Server problem");
+            });
+        }
+	
+    function checks()
+    {
 
-		
+    };
+    function getNext(ans)
+    {
 
-		// body...
-	}
+    	if (ans == isCorrect)
+    	{
+    		score = score + 1;
+    		$('#idps').text(score);
+    	}
+    	else
+    	{
+    		if (score == 0)
+    		{
+
+    		}
+    		else
+    		{
+    		score = score - 1;
+    		$('#idps').text(score);
+    	}
+    	}
+    	t = Math.floor(Math.random()*words['words'].length-1) + 1;
+    	if (Math.random() > 0.5)
+    	{
+    		k = Math.floor((Math.random()*(words['words'].length-2)) + 1);
+    		isCorrect = false;
+
+
+    	}
+    	else
+    	{
+    		k = t;
+    		isCorrect = true;
+
+    	}
+    
+
+
+    	$('#eng').text(words['words'][t]['eng']);
+    	$('#rus').text(words['words'][k]['rus']); 
+    	
+
+
+
+
+
+
+
+
+
+
+
+
+    };
+    
 
 	</script>
 {% endblock %}
@@ -29,14 +87,14 @@
 	
 
 	
-	<span id="eng"></span>
-	<span id="rus"></span>
-	<h5 id="idsc">Points: </h5>
+	<span id="eng"></span> = 
+	<span id="rus"></span><br>
+	<h5 id="idsc">Points: </h5><br>
 	<span id="idps"></span>
 
 </div>
 
-	<button type="button" class="btn btn-success" onclick="Next(1)">Yes</button>
-	<button type="button" class="btn btn-danger"  onclick="Next(0)">No</button>
+	<button type="button" class="btn btn-success" onclick="getNext(true)">Yes</button>
+	<button type="button" class="btn btn-danger" onclick="getNext(false)">No</button>
 	
 {% endblock %}

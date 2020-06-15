@@ -86,6 +86,21 @@ def search():
 def games():
 	return render_template('games.html',title = 'Games')
 
+
+
+@app.route('/yes_not')
+@login_required
+def yes_not():
+	return render_template('yes_not.html',title = 'Yes or Not')
+
+@app.route('/getNext', methods=['POST','GET'])
+@login_required
+def getNext():
+	words = Word.query.filter_by(user_id = current_user.id).all()
+	return jsonify(words = [e.serialize() for e in words])
+
+
+
 @app.route('/translate', methods=['POST'])
 @login_required
 def translate_text():
@@ -100,18 +115,6 @@ def add_wordsx():
 	flash('The word has been added in the dictionary ! ')
 	return render_template('search.html', title='Search')
 	
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

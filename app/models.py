@@ -23,8 +23,6 @@ class User(UserMixin, db.Model):
 def load_user(id):
 	return User.query.get(int(id))
 
-
-
 class Word(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
 	english=db.Column(db.String(128))
@@ -33,6 +31,13 @@ class Word(db.Model):
 
 	def __repr__(self):
 		return '<Word {}>'.format(self.russian)
+
+
+	def serialize(self):
+		return {
+		'rus': self.russian,
+		'eng': self.english,
+		}
 
 class Language(db.Model):
 	id = db.Column(db.Integer,primary_key=True)
@@ -46,4 +51,3 @@ class Language(db.Model):
 
 
 
-	
