@@ -9,7 +9,8 @@
         {
             $.post('/add_words', {
                 eng: $('#word1').val(),
-                russian: $('#translate1').text()
+                russian: $('#translate1').text(),
+                remarks: $('#validationTextarea').val()
 
 
             })
@@ -58,8 +59,17 @@
         <span id="synonims">
             
         </span><br>
+        <div class="mb-3">
+            <label for="validationTextarea">Remarks</label>
+            <textarea class="form-control is-invalid" rows="2" cols="45"  id="validationTextarea" placeholder="Write a sentence to remember better!" required></textarea>
+            <div class="invalid-feedback">
+
+
+            </div>
+        </div>
         <h4>Add word</h4>
         <input type="submit" name="Add word" onclick="add_word()">
+
 
     </div>
 

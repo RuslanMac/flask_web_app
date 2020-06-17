@@ -2,6 +2,7 @@ from datetime import datetime
 from app import db, login
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from sqlalchemy.sql import func
 
 class User(UserMixin, db.Model):
 	id = db.Column(db.Integer, primary_key = True)
@@ -27,6 +28,7 @@ class Word(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
 	english=db.Column(db.String(128))
 	russian=db.Column(db.String(128))
+	remarks=db.Column(db.String(128))
 	user_id=db.Column(db.Integer,db.ForeignKey('user.id'))
 
 	def __repr__(self):

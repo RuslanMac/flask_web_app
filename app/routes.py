@@ -93,6 +93,8 @@ def games():
 def yes_not():
 	return render_template('yes_not.html',title = 'Yes or Not')
 
+
+
 @app.route('/getNext', methods=['POST','GET'])
 @login_required
 def getNext():
@@ -109,14 +111,24 @@ def translate_text():
 @app.route('/add_words', methods=['POST'])
 @login_required
 def add_wordsx():
-	word = Word(english = request.form['eng']  ,russian = request.form['russian'] ,user_id = current_user.id)
+	word = Word(english = request.form['eng'], russian = request.form['russian'] , remarks = request.form['remarks'],     user_id = current_user.id)
 	db.session.add(word)
 	db.session.commit()
 	flash('The word has been added in the dictionary ! ')
 	return render_template('search.html', title='Search')
 	
 
+@app.route('/get5words', methods=['POST','GET'])
+@login_required
+def get5words():
+	words = Word.query.filter_by(user_id = current_user.id).limit(5).all()
+	return jsonify(words = [e.serialize() for e in words])
 
+@app.route('/associate_game')
+@login_required
+def associate_game():
+	words = Word.query.filter_by(user_id = current_user.id).limit(5).all()
+	return render_template('associate_game.html', title='Associate Game', words = words)
 
 
 
