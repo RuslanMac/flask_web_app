@@ -1,20 +1,29 @@
 {% extends "base.html" %}
 {% block app_content %}
-	<div class="card" style="width: 18rem;">
-  		<img src="https://blogs.sas.com/content/customeranalytics/files/2018/12/decision-management.jpg" width="200" height="200"  class="card-img-top" alt="...">
-  		<div class="card-body">
-    		<h5 class="card-title">Yes/No</h5>
-    		<p class="card-text">In this game you must define if the word's tranlation is right or wrong.</p>
-    		<a href="{{ url_for('yes_not') }}" class="btn btn-primary">Play now</a>
-  		</div>
-</div>
-<div class="card" style="width: 18rem;">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6">
+	    <div class="card" style="width: 18rem;">
+  		  <img src="https://blogs.sas.com/content/customeranalytics/files/2018/12/decision-management.jpg" width="200" height="200"  class="card-img-top" alt="...">
+  		  <div class="card-body">
+    		  <h5 class="card-title">Yes/No</h5>
+    		  <p class="card-text">In this game you must define if the word's tranlation is right or wrong.</p>
+    		  <a href="{{ url_for('yes_not') }}" class="btn btn-primary">Play now</a>
+  		  </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card" style="width: 18rem;">
   		<img src="" width="200" height="200"  class="card-img-top" alt="...">
-  		<div class="card-body">
-    		<h5 class="card-title">Associate words</h5>
-    		<p class="card-text">In this game you shoud associate words in keeping with their trasncription</p>
-    		<a href="{{ url_for('associate_game') }}" class="btn btn-primary">Play now</a>
-  		</div>
+  		  <div class="card-body">
+    		  <h5 class="card-title">Associate words</h5>
+    		  <p class="card-text">In this game you shoud associate words in keeping with their trasncription</p>
+    		  <a href="{{ url_for('associate_game') }}" class="btn btn-primary">Play now</a>
+  		  </div>
+      </div>
+    </div>
+  </div>
 </div>
+
 {% endblock %}
 

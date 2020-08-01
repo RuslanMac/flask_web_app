@@ -5,6 +5,7 @@ from app import app, db
 from app.forms import LoginForm, RegistrationForm, AddWordForm, EditProfileForm
 from app.models import User, Word
 from app.translate import translate
+from flask_babel import _
 
 
 
@@ -23,7 +24,7 @@ def login():
 	if form.validate_on_submit():
 		user = User.query.filter_by(username=form.username.data).first()
 		if user is None or not user.check_password(form.password.data):
-			flash('Invalid username or password')
+			flash(_('Invalid username or password'))
 			return redirect(url_for('login'))
 		login_user(user, remember = form.remember_me.data)
 		next_page = request.args.get('next')
@@ -42,7 +43,7 @@ def register():
 		user.set_password(form.password.data)
 		db.session.add(user)
 		db.session.commit()
-		flash('Congratulations, you are now a registered user!')
+		flash(_('Congratulations, you are now a registered user!'))
 		return redirect(url_for('login'))
 	return render_template('register.html', title='Register', form = form)
 
@@ -72,7 +73,7 @@ def edit_profile():
 		current_user.username = form.username.data
 		current_user.language = form.language.data
 		db.session.commit()
-		flash('Your changes have been saved!')
+		flash(_('Your changes have been saved!'))
 		return redirect(url_for('edit_profile'))
 	return render_template('edit_profile.html', title='Edit Profile', form = form)
 
@@ -106,7 +107,7 @@ def getNext():
 @app.route('/translate', methods=['POST'])
 @login_required
 def translate_text():
-	return jsonify({'text': translate(request.form['text'])})
+	return jsonify({'text': translate(request.form['text'],request.form['sourcelang'],request.form['destlang'])})
 
 @app.route('/add_words', methods=['POST'])
 @login_required
@@ -114,7 +115,7 @@ def add_wordsx():
 	word = Word(english = request.form['eng'], russian = request.form['russian'] , remarks = request.form['remarks'],     user_id = current_user.id)
 	db.session.add(word)
 	db.session.commit()
-	flash('The word has been added in the dictionary ! ')
+	flash(_('The word has been added in the dictionary ! '))
 	return render_template('search.html', title='Search')
 	
 
@@ -124,11 +125,22 @@ def get5words():
 	words = Word.query.filter_by(user_id = current_user.id).limit(5).all()
 	return jsonify(words = [e.serialize() for e in words])
 
+
+
 @app.route('/associate_game')
 @login_required
 def associate_game():
 	words = Word.query.filter_by(user_id = current_user.id).limit(5).all()
 	return render_template('associate_game.html', title='Associate Game', words = words)
+
+
+@app.route('/initPage', methods=['POST','GET'])
+@login_required
+def initPage():
+	languages = [{'en': 'English', 'ru': 'Russian', 'fr': 'French', 'it': 'Italian'}]
+	return jsonify({'lang':languages})
+
+
 
 
 

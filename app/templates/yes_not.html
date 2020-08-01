@@ -13,18 +13,9 @@
 	function getWords() {
             $.post('/getNext').done(function(response) {
                 words = response;
-                alert("it works");
-                
-            }).fail(function() {
-                
-                alert("Server problem");
+            }).fail(function() { 
             });
         }
-	
-    function checks()
-    {
-
-    };
     function getNext(ans)
     {
 
@@ -77,24 +68,63 @@
 
 
 
+
+
+
+
+
+
+
+
     };
     
 
 	</script>
 {% endblock %}
 {% block app_content %}
-<div class="card border-success mb-3" style="max-width: 18rem;">
-	
-
-	
-	<span id="eng"></span> = 
-	<span id="rus"></span><br>
-	<h5 id="idsc">Points: </h5><br>
-	<span id="idps"></span>
-
+<div class="container">
+<div class="row justify-content-end">
+    <div class="col-4">
+      <div class="col align-items-center">
+        <div class="card text-center">
+            <div class="card border-success mb-3" style="max-width: 18rem;">
+                <span id="eng"></span> = 
+                <span id="rus"></span><br>
+                <h5 id="idsc">Points: </h5><br>
+                <span id="idps"></span>
+                <button type="button" class="btn btn-success" onclick="getNext(true)">Yes</button>
+                <button type="button" class="btn btn-danger" onclick="getNext(false)">No</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="col-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Record</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  </div>
 </div>
 
-	<button type="button" class="btn btn-success" onclick="getNext(true)">Yes</button>
-	<button type="button" class="btn btn-danger" onclick="getNext(false)">No</button>
+
 	
 {% endblock %}

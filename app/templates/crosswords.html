@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block scripts %}
+<script type="text/javascript" src=" https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+var grid = [	[0,	0, 0, 0, '1', 0, 0, 0, 0, 0],
+				[0, 0, 0, 0, '1', 0, 0, 0, 0, 0],
+				[0, 0, 0, 0, '1', 0, '2', 0, 0, 0],
+				[0, '3', '3', '3', '3,1', '3', '3,2', '3', '3', '3,4'],
+				[0, 0, 0, 0, 0, 0, '2', 0, 0, '4'],
+				[0, 0, 0, 0, 0, 0, '2', 0, 0, '4'],
+				[0, 0, '5', '5', '5', '5', '2,5', '5', 0, '4'],
+				[0, 0, 0, 0, 0, 0, '2', 0, 0, '4'],
+				[0, 0, 0, 0, 0, 0, '2', 0, 0, 0],
+				['6', '6', '6', '6', '6', '6', '2,6', 0, 0, 0],
+				[0, 0, 0, 0, 0, 0, '2', 0, 0, 0]
+			];
+var clues = ["Education Hub",
+             "Information Technology Hub",
+             "Cultural Hub",
+             "Capital of India",
+             "India's financial capital",
+             "Saffron region"
+            ];
+
+var answers = ["pune",
+             "bangalore",
+             "hyderabad",
+             "delhi",
+             "mumbai",
+             "kashmir"
+            ];
+
+
+
+$("#check").click(function(){
+    $("#puzzle td div").css("color","initial");
+    for(var i = 0;i < answers.length;i++){
+        checkAnswer(i+1);
+    }    
+});
+
+
+
+</script>
+{% endblock %}
+
+{% block app_content %}
+<div id="puzzle_container">
+    <table id="puzzle">
+    </table>
+</div>
+
+<div id="hints_container">
+    <h3>Vertical</h3>
+        <div id="vertical_hints_container"></div>
+    <h3>Horizontal</h3>
+        <div id="horizontal_hints_container"></div>
+</div>
+
+<div id="buttons_container">
+    <button id="clear_all">Clear All</button>
+    <button id="check">Check</button>
+    <button id="solve">Solve</button>
+    <button id="clue">Clue</button>
+</div>
+{% endblock %}

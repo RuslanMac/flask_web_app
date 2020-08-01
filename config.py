@@ -7,3 +7,4 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     WORDS_PER_PAGE = 20
     YANDEX_DICTIONARY_KEY = os.environ.get('YANDEX_DICTIONARY_KEY')
+    LANGUAGES = ['en','ru']
