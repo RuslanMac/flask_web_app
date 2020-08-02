@@ -9,7 +9,8 @@ class User(UserMixin, db.Model):
 	username = db.Column(db.String(128), index=True, unique=True)
 	email = db.Column(db.String(128), index=True, unique=True)
 	password_hash = db.Column(db.String(128))
-	words = db.relationship('Word', backref='author', lazy='dynamic')
+	language_id = db.Column(db.Integer, db.ForeignKey('language.id'))
+	languages = db.relationship('Dictionary', backref='user', lazy='dynamic')
 
 	def __repr__(self):
 		return '<User {}>'.format(self.username)
@@ -24,15 +25,17 @@ class User(UserMixin, db.Model):
 def load_user(id):
 	return User.query.get(int(id))
 
+
+
 class Word(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
-	english=db.Column(db.String(128))
-	russian=db.Column(db.String(128))
+	native_language=db.Column(db.String(128))
+	foreign_language=db.Column(db.String(128))
 	remarks=db.Column(db.String(128))
-	user_id=db.Column(db.Integer,db.ForeignKey('user.id'))
+	dictionary_id=db.Column(db.Integer,db.ForeignKey('dictionary.id'))
 
 	def __repr__(self):
-		return '<Word {}>'.format(self.russian)
+		return '<Word {}>'.format(self.native_language)
 
 
 	def serialize(self):
@@ -44,7 +47,21 @@ class Word(db.Model):
 class Language(db.Model):
 	id = db.Column(db.Integer,primary_key=True)
 	language = db.Column(db.String(128))
-	user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
+	users = db.relationship('User', backref='language', lazy='dynamic')
+
+	def __repr__(self):
+		return '<Language {}>'.format(self.language)
+
+
+class Dictionary(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+	language_id = db.Column(db.Integer, db.ForeignKey('language.id'))
+	words = db.relationship('Word', backref='dictionary', lazy='dynamic')
+
+
+	def __repr__(sefl):
+		return '<Dictionary {}, user_id {}, language_id {}>'.format(self.id, self.user_id, self.language_id)
 
 
 

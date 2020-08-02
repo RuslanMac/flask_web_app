@@ -18,7 +18,11 @@ class RegistrationForm(FlaskForm):
 	password = PasswordField(_l('Password'), validators=[DataRequired()])
 	password2 = PasswordField(
 		_l('Repeat Password'), validators=[DataRequired(), EqualTo('password')])
+	my_language = SelectField('My language', coerce=int)
+	languages = SelectField('Foreign language', coerce=int)
 	submit = SubmitField(_l('Register'))
+
+
 
 
 	def validate_username(self, username):

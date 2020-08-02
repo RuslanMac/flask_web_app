@@ -3,7 +3,7 @@ from werkzeug.urls import url_parse
 from flask_login import current_user, login_user, logout_user, login_required
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, AddWordForm, EditProfileForm
-from app.models import User, Word
+from app.models import User, Word, Language, Dictionary
 from app.translate import translate
 from flask_babel import _
 
@@ -38,10 +38,17 @@ def register():
 	if current_user.is_authenticated:
 		return redirect(url_for('index'))
 	form = RegistrationForm()
+	form.my_language.choices = [(language.id, language.language) for language in Language.query.all()]
+	form.languages.choices = [(language.id, language.language) for language in Language.query.all()]
 	if form.validate_on_submit():
-		user = User(username = form.username.data, email=form.email.data)
+		language = Language.query.filter_by(language=form.my_language.data).first().id
+		foreign_languages = Language.query.filter_by(language=form.languages.data).first().id
+		user = User(username = form.username.data, email=form.email.data, language_id=language)
 		user.set_password(form.password.data)
 		db.session.add(user)
+		db.session.commit()
+		dictionary = Dictionary(user_id=current_user.id, language_id=foreign_languages)
+		db.session.add(dictionary)
 		db.session.commit()
 		flash(_('Congratulations, you are now a registered user!'))
 		return redirect(url_for('login'))
@@ -51,7 +58,7 @@ def register():
 @login_required
 def mywords():
 	page = request.args.get('page',1,type=int)
-	words = current_user.words.paginate(
+	words = current_user.languages[0].words.paginate(
 		page, app.config['WORDS_PER_PAGE'], False)
 	next_url = url_for('mywords',page = words.next_num) \
 	if words.has_next else None
