@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, PasswordField, BooleanField, \
-	SubmitField, SelectField
+	SubmitField, SelectField, SelectMultipleField, TextAreaField
 from wtforms.validators import ValidationError,  DataRequired, Email, EqualTo, \
 	Length
 from app.models import User
@@ -19,7 +19,8 @@ class RegistrationForm(FlaskForm):
 	password2 = PasswordField(
 		_l('Repeat Password'), validators=[DataRequired(), EqualTo('password')])
 	my_language = SelectField('My language', coerce=int)
-	languages = SelectField('Foreign language', coerce=int)
+	#languages = SelectField('Foreign language', coerce=int)
+	languages1 = SelectMultipleField('Foreign Languages', coerce=int)
 	submit = SubmitField(_l('Register'))
 
 
@@ -35,13 +36,26 @@ class RegistrationForm(FlaskForm):
 		if user is not None:
 			raise ValidationError(_('Please use a different email address.'))
 
-	
+
+class DictionaryForm(FlaskForm):
+	foreign_languages = SelectField('Languages', coerce=int)
+	#foreign_languages = SelectMultipleField('Languages', coerce=int)
+	remarks = TextAreaField('Remarks' )
+
+
+
+
+
+
 
 class AddWordForm(FlaskForm):
-	submit = SubmitField(_l('Submit'))
+	languages = SelectField('Language', coerce=int)
+	submit = SubmitField('Add word')
+	
 
 class EditProfileForm(FlaskForm):
 	username = StringField(_l('Username'), validators=[DataRequired()])
+	languages = SelectField('Foreign language', coerce=int)
 	submit = SubmitField(_l('Submit'))
 
 	def __init__(self,original_username, *args, **kwargs):

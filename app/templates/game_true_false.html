@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block scripts %}
+{{ super() }}
+
+<script>
+	var count=0;
+	var temp_count=0;
+	var foreign_word;
+	var native_word;
+	var answer_client;
+	function start(){
+		$.post('/get_words', {
+
+		}).done(function(response)
+		{
+			var result = response['words'];
+			answer_client = response['answer'];
+
+			foreign_word = result['foreign_language'];
+			native_word = result['native_language'];
+			$('#foreign_words').text(foreign_word);
+			$('#native_words').text(native_word);
+			$('#text_count_id').text(count);
+		}).fail(function(){
+			$('#foreign_language').text("Server problems");
+		});
+	}
+
+    function get_next_words(answer){
+    	if (answer==answer_client){
+    		if (temp_count<0)
+    		{
+    			temp_count=5;
+    		}
+    		else{
+    			temp_count = temp_count + 5;
+
+    		};	
+	      		$('#textClass').css({fill: "#BBDB19"});
+	      	}
+	    else{
+	    	if (temp_count>0){
+	    		temp_count=-5;
+	    	}
+	    	else
+	    	{
+	    		temp_count = temp_count - 5;
+	    	};
+	    	
+	    	$('#textClass').css({fill: "#1EABF2"});
+	    };
+	    count = count + temp_count;
+	    $('#textClass').text(temp_count);
+	    $('#count_id').text(count);
+	    $('#text_count_id').text(count);
+	    $.post('/get_words', {
+	      
+	      
+	    }).done(function(response)
+	      { 	
+
+	        var result = response['words'];
+	        answer_client = response['answer'];
+	      	foreign_word = result['foreign_language'];
+	      	native_word = result['native_language'];
+	        $('#foreign_words').text(foreign_word);
+	        $('#native_words').text(native_word);
+	        
+
+	    }).fail(function(){
+	      $('#foreign_language').text("Server problems");
+	    });
+	}
+
+</script>
+
+
+{% endblock %}
+{% block app_content %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-1">
+			<a href="javascript:start();" class="btn btn-primary">Start</a>
+		</div>
+		<div class="col-md-2 col-md-offset-4">
+				<div class="card w-75 border-primary">
+        			<div class="card-body">
+            		<h2 class="card-title" id="foreign_words"></h2>
+            		<h2 class="card-text" id="native_words">1</h2>
+            		<a href="javascript:get_next_words(1);" class="btn btn-success">True</a>
+            		<a href="javascript:get_next_words(2);" class="btn btn-danger">False</a>
+   
+        			</div>
+        		</div>
+       			
+			
+       	
+ 
+		</div>
+		<div class="col-md-1">
+			<svg viewbox="0 0 100 80" width="100" height="80">
+				<style type="text/css">
+					#textClass{
+						font-size: 24px;
+						fill:green;
+					}
+				</style>
+				
+				<text  text-anchor="middle" x="25" y="45"  id="textClass"></text>
+			</svg>
+		</div>
+					
+        <div class="col-md-2 col-md-offset-2">
+       		<svg viewbox="0 0 400 700"    width="400" height="500">
+       			<style type="text/css">
+       				#classPoints {
+				    	fill:#1EABF2;
+				    	stroke-width:4;
+				    	stroke:#BBDB19;
+				    	stroke-linejoin: round;
+				    }
+       			</style>
+  				<polyline points="20,20 120,20 120,80 70,130 20,80 20,20" id="classPoints"></polyline>
+  				<text fill="url(#polyline_id)" text-anchor="middle" x="70" y="10">Count:</text>
+  				<text fill="url(#polyline_id)" text-anchor="middle" x="70" y="80" id="text_count_id"></text>
+
+    	</svg>
+       		<span>Count:</span>
+       		<p></p>
+       </div>
+
+    </div>
+   
+</div>
+
+{% endblock %}

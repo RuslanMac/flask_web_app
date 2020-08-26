@@ -1,16 +1,27 @@
-{% extends "base.html" %}
+ {% extends "base.html" %}
 {% import 'bootstrap/wtf.html' as wtf %}
 {% block app_content %}
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">English</th>
-      <th scope="col">Russian</th>
-      <th scope="col">Remarks</th>
-    </tr>
-  </thead>
-</table>
+<div class="containder">
+<div class="row">
+  <div class="col-md-2  col-md-offset-2">
+   {{ form.foreign_languages() }}
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8    col-md-offset-2">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Native Language</th>
+          <th scope="col">Foreign Language</th>
+          <th scope="col">Remarks</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>
+</div>
 
 	  {% for word in words %}
         {% include '_words.html' %}
@@ -22,4 +33,10 @@
     <a href="{{ next_url }}">Next page</a>
     {% endif %}
 
+{% endblock %}
+{% block scripts %}
+  {{ super()  }}
+  <script>
+    
+  </script>
 {% endblock %}

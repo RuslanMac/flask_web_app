@@ -12,6 +12,7 @@ class User(UserMixin, db.Model):
 	language_id = db.Column(db.Integer, db.ForeignKey('language.id'))
 	languages = db.relationship('Dictionary', backref='user', lazy='dynamic')
 
+
 	def __repr__(self):
 		return '<User {}>'.format(self.username)
 
@@ -32,6 +33,7 @@ class Word(db.Model):
 	native_language=db.Column(db.String(128))
 	foreign_language=db.Column(db.String(128))
 	remarks=db.Column(db.String(128))
+	level=db.Column(db.Integer, default=1)
 	dictionary_id=db.Column(db.Integer,db.ForeignKey('dictionary.id'))
 
 	def __repr__(self):
@@ -40,13 +42,14 @@ class Word(db.Model):
 
 	def serialize(self):
 		return {
-		'rus': self.russian,
-		'eng': self.english,
+		'foreign_language': self.foreign_language,
+		'native_language': self.native_language
 		}
 
 class Language(db.Model):
 	id = db.Column(db.Integer,primary_key=True)
 	language = db.Column(db.String(128))
+	lit = db.Column(db.String(4))
 	users = db.relationship('User', backref='language', lazy='dynamic')
 
 	def __repr__(self):
@@ -60,7 +63,7 @@ class Dictionary(db.Model):
 	words = db.relationship('Word', backref='dictionary', lazy='dynamic')
 
 
-	def __repr__(sefl):
+	def __repr__(self):
 		return '<Dictionary {}, user_id {}, language_id {}>'.format(self.id, self.user_id, self.language_id)
 
 
