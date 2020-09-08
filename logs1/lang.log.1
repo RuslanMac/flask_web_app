@@ -1,27 +1,4 @@
-2020-08-24 00:08:19,735 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-24 00:09:54,158 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-24 00:25:40,338 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-25 21:06:12,234 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-25 21:16:10,721 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-25 21:40:49,236 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 00:01:34,123 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 00:02:10,577 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 00:11:00,619 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 00:12:30,767 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 00:14:02,933 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 00:14:11,395 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 00:16:56,482 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 00:17:50,208 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 00:19:06,062 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 00:21:27,688 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 00:27:41,681 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 12:52:30,818 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 12:53:30,776 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 12:54:01,090 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 12:54:22,718 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 12:56:37,057 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 13:00:33,430 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 13:00:40,219 ERROR: Exception on /game_true_false [GET] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
+2020-09-06 15:09:53,304 ERROR: Exception on /words_errors [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -37,8 +14,8 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 166, in game_true_false
-    return render_template('game_true_false.html', title='True or False')
+  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 235, in get_words_errors_games
+    return render_template('word_errors.html', title='Word Errors', words_answer=words_result)
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
     return _render(
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
@@ -49,7 +26,7 @@ Traceback (most recent call last):
     reraise(*rewrite_traceback_stack(source=source))
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
     raise value.with_traceback(tb)
-  File "/Users/macbook/lang/flask_web_app/app/templates/game_true_false.html", line 2, in top-level template code
+  File "/Users/macbook/lang/flask_web_app/app/templates/word_errors.html", line 2, in top-level template code
     {% import 'bootstrap/wtf.html' as wtf %}
   File "/Users/macbook/lang/flask_web_app/app/templates/base.html", line 2, in top-level template code
     {% extends 'bootstrap/base.html' %}
@@ -57,14 +34,20 @@ Traceback (most recent call last):
     {% block doc -%}
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
     {%- block html %}
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 6, in block "html"
-    {%- block head %}
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 13, in block "head"
-    {%- block styles %}
-  File "/Users/macbook/lang/flask_web_app/app/templates/base.html", line 8, in block "styles"
-    <link rel="stylesheet" type="text/css"  href="{{url_for( filename='custome_styles.css')}}">
-TypeError: url_for() missing 1 required positional argument: 'endpoint'
-2020-08-26 13:01:05,413 ERROR: Exception on /game_true_false [GET] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block "body"
+    {% block content -%}
+  File "/Users/macbook/lang/flask_web_app/app/templates/base.html", line 52, in block "content"
+    {% block app_content %}{% endblock %}
+  File "/Users/macbook/lang/flask_web_app/app/templates/word_errors.html", line 8, in block "app_content"
+    <th scope="col">{{ words_answer[0].foreign_word }} </th>
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/jinja2/environment.py", line 471, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: None has no element 0
+2020-09-06 15:12:15,595 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 15:15:09,973 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 15:15:52,016 ERROR: Exception on /words_errors [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -80,42 +63,69 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 166, in game_true_false
-    return render_template('game_true_false.html', title='True or False')
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
-    return _render(
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
-    rv = template.render(context)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
-    self.environment.handle_exception()
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
-    reraise(*rewrite_traceback_stack(source=source))
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/macbook/lang/flask_web_app/app/templates/game_true_false.html", line 2, in top-level template code
-    {% import 'bootstrap/wtf.html' as wtf %}
-  File "/Users/macbook/lang/flask_web_app/app/templates/base.html", line 2, in top-level template code
-    {% extends 'bootstrap/base.html' %}
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
-    {% block doc -%}
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
-    {%- block html %}
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 6, in block "html"
-    {%- block head %}
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 13, in block "head"
-    {%- block styles %}
-  File "/Users/macbook/lang/flask_web_app/app/templates/base.html", line 8, in block "styles"
-    <link rel="stylesheet" type="text/css"  href="{{url_for('.static', filename='custome_styles.css')}}">
-TypeError: url_for() missing 1 required positional argument: 'endpoint'
-2020-08-26 13:01:11,524 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 13:04:59,005 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 13:10:46,969 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 13:11:28,938 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 13:13:41,108 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 13:23:54,334 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 13:25:00,899 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 13:27:29,433 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 13:30:17,195 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 13:32:11,131 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 13:32:37,826 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-26 13:32:45,343 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 234, in get_words_errors_games
+    words_result = words_answer['words']
+TypeError: 'NoneType' object is not subscriptable
+2020-09-06 15:19:35,944 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 15:20:38,058 ERROR: Exception on /words_errors [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 234, in get_words_errors_games
+    words_result = words_answer['words']
+TypeError: 'NoneType' object is not subscriptable
+2020-09-06 15:21:20,091 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-07 21:52:01,041 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-07 21:52:04,113 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-07 21:52:48,057 ERROR: Exception on /get_words [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 197, in get_words
+    user_count_words = current_user.languages.all().words.count()-1
+AttributeError: 'list' object has no attribute 'words'
+2020-09-07 21:56:18,189 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-07 21:56:23,488 ERROR: Exception on /get_words [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 197, in get_words
+    user_count_words = current_user.languages.all().words.count()-1
+AttributeError: 'list' object has no attribute 'words'
+2020-09-07 21:56:52,090 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]

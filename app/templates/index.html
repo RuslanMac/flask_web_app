@@ -1,7 +1,35 @@
 {% extends "base.html" %}
+{% block scripts %}
+{{ super()  }}
+<script type="text/javascript">
+	function getSelectionText(){
+		var txt='';
+		if (txt = window.getSelection){
+			txt = window.getSelection();
 
+		}
+		else{
+
+			txt = document.selection.CreateRange().text;
+		}
+		$('#text_select1').text(txt);
+
+		return txt;
+
+		
+
+
+		
+
+
+	}
+</script>
+{% endblock %}
 {% block app_content %}
-	<h1>Hi, {{ user }}</h1>
+	<h1>Hi, {{ user }} </h1>
+	<h1 id="text_select1"></h1>
+	<button onclick="getSelectionText()">Click to write a word</button>
+	<a type="button" class="btn-floating indigo"><i class="fab fa-google-wallet" aria-hidden="true" style="position: absolute;"></i>Hello</a>
 	{% for news in newsapi %}
 		{% include '_articles.html' %} 
 	{% endfor %}

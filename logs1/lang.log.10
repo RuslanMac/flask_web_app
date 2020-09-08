@@ -1,57 +1,4 @@
-2020-08-17 21:05:20,442 ERROR: Exception on /index [GET] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
-Traceback (most recent call last):
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 22, in index
-    return render_template('index.html', title='Home'  , user = current_user.username, newsapi = newsapi['sources']  )
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
-    return _render(
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
-    rv = template.render(context)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
-    self.environment.handle_exception()
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
-    reraise(*rewrite_traceback_stack(source=source))
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/macbook/lang/flask_web_app/app/templates/index.html", line 1, in top-level template code
-    {% extends "base.html" %}
-  File "/Users/macbook/lang/flask_web_app/app/templates/base.html", line 2, in top-level template code
-    {% extends 'bootstrap/base.html' %}
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
-    {% block doc -%}
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
-    {%- block html %}
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
-    {% block body -%}
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block "body"
-    {% block content -%}
-  File "/Users/macbook/lang/flask_web_app/app/templates/base.html", line 51, in block "content"
-    {% block app_content %}{% endblock %}
-  File "/Users/macbook/lang/flask_web_app/app/templates/index.html", line 6, in block "app_content"
-    {% include '_article.html' %}
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/templating.py", line 60, in get_source
-    return self._get_source_fast(environment, template)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/templating.py", line 89, in _get_source_fast
-    raise TemplateNotFound(template)
-jinja2.exceptions.TemplateNotFound: _article.html
-2020-08-17 21:05:47,846 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-17 21:16:37,799 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-18 14:38:21,647 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-18 14:38:26,074 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-18 14:41:34,175 ERROR: Exception on /getNext [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
+2020-08-28 00:10:56,220 ERROR: Exception on /getNext [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/base.py", line 406, in _entity_descriptor
     return getattr(entity, key)
@@ -74,7 +21,7 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 129, in getNext
+  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 130, in getNext
     words = Word.query.filter_by(user_id = current_user.id).all()
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 1893, in filter_by
     clauses = [
@@ -85,13 +32,14 @@ Traceback (most recent call last):
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 178, in raise_
     raise exception
 sqlalchemy.exc.InvalidRequestError: Entity '<class 'app.models.Word'>' has no property 'user_id'
-2020-08-18 15:04:05,397 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-18 15:16:47,045 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-18 16:10:33,747 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-18 16:10:38,751 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-18 16:10:43,946 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-18 16:10:46,028 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-18 16:10:49,488 ERROR: Exception on /yes_not [GET] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
+2020-08-28 00:11:04,320 ERROR: Exception on /associate_game [GET] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/base.py", line 406, in _entity_descriptor
+    return getattr(entity, key)
+AttributeError: type object 'Word' has no attribute 'user_id'
+
+The above exception was the direct cause of the following exception:
+
 Traceback (most recent call last):
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -107,25 +55,74 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 122, in yes_not
-    return render_template('yes_not.html',title = 'Yes or Not')
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/templating.py", line 138, in render_template
-    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/jinja2/environment.py", line 930, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/jinja2/environment.py", line 883, in get_template
-    return self._load_template(name, self.make_globals(globals))
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/jinja2/environment.py", line 857, in _load_template
-    template = self.loader.load(self, name, globals)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/jinja2/loaders.py", line 127, in load
-    code = environment.compile(source, name, filename)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/jinja2/environment.py", line 638, in compile
-    self.handle_exception(source=source_hint)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
-    reraise(*rewrite_traceback_stack(source=source))
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
-    raise value.with_traceback(tb)
-  File "/Users/macbook/lang/flask_web_app/app/templates/yes_not.html", line 4, in template
-    {% super() %}
-jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'super'. Jinja was looking for the following tags: 'endblock'. The innermost block that needs to be closed is 'block'.
-2020-08-18 16:11:51,125 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 189, in associate_game
+    words = Word.query.filter_by(user_id = current_user.id).limit(7).all()
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 1893, in filter_by
+    clauses = [
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 1894, in <listcomp>
+    _entity_descriptor(self._joinpoint_zero(), key) == value
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/base.py", line 408, in _entity_descriptor
+    util.raise_(
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 178, in raise_
+    raise exception
+sqlalchemy.exc.InvalidRequestError: Entity '<class 'app.models.Word'>' has no property 'user_id'
+2020-08-28 14:30:05,471 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-08-28 14:34:18,669 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-08-28 14:36:44,982 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-08-28 14:44:01,557 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-08-28 14:54:34,558 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-08-28 14:54:40,268 ERROR: Exception on /index [GET] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 18, in index
+    language = Language.query.filter_by(id = current_user.language).lit.first()
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 1893, in filter_by
+    clauses = [
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 1894, in <listcomp>
+    _entity_descriptor(self._joinpoint_zero(), key) == value
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/sql/operators.py", line 365, in __eq__
+    return self.operate(eq, other)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/attributes.py", line 219, in operate
+    return op(self.comparator, *other, **kwargs)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/sql/operators.py", line 365, in __eq__
+    return self.operate(eq, other)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/properties.py", line 367, in operate
+    return op(self.__clause_element__(), *other, **kwargs)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/sql/annotation.py", line 104, in __eq__
+    return self.__element.__class__.__eq__(self, other)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/sql/operators.py", line 365, in __eq__
+    return self.operate(eq, other)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 759, in operate
+    return op(self.comparator, *other, **kwargs)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/sql/operators.py", line 365, in __eq__
+    return self.operate(eq, other)
+  File "<string>", line 1, in <lambda>
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/sql/type_api.py", line 67, in operate
+    return o[0](self.expr, op, *(other + o[1:]), **kwargs)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/sql/default_comparator.py", line 105, in _boolean_compare
+    obj = _check_literal(expr, op, obj)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/sql/default_comparator.py", line 373, in _check_literal
+    return expr._bind_param(operator, other, type_=bindparam_type)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 4219, in _bind_param
+    return BindParameter(
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 1230, in __init__
+    self.type = _compared_to_type.coerce_compared_value(
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/sql/type_api.py", line 578, in coerce_compared_value
+    _coerced_type = _resolve_value_to_type(value)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/sql/sqltypes.py", line 3024, in _resolve_value_to_type
+    raise exc.ArgumentError(
+sqlalchemy.exc.ArgumentError: Object <Language English> is not legal as a SQL literal value
+2020-08-28 14:55:25,310 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]

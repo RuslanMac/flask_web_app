@@ -41,6 +41,7 @@ class DictionaryForm(FlaskForm):
 	foreign_languages = SelectField('Languages', coerce=int)
 	#foreign_languages = SelectMultipleField('Languages', coerce=int)
 	remarks = TextAreaField('Remarks' )
+	submit = SubmitField('Submit')
 
 
 
@@ -54,7 +55,7 @@ class AddWordForm(FlaskForm):
 	
 
 class EditProfileForm(FlaskForm):
-	username = StringField(_l('Username'), validators=[DataRequired()])
+	username = StringField(_l('Username'))
 	languages = SelectField('Foreign language', coerce=int)
 	submit = SubmitField(_l('Submit'))
 

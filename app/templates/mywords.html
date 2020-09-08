@@ -2,16 +2,22 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 {% block app_content %}
 <div class="containder">
+  <form method="POST">
+    {{ form.csrf_token }}
 <div class="row">
   <div class="col-md-2  col-md-offset-2">
    {{ form.foreign_languages() }}
   </div>
+  <div>
+    {{ form.submit }}
+  </div>
+  </form>
 </div>
 <div class="row">
   <div class="col-md-8    col-md-offset-2">
     <table class="table">
       <thead class="thead-dark">
-        <tr>
+        <tr id="id4">
           <th scope="col">#</th>
           <th scope="col">Native Language</th>
           <th scope="col">Foreign Language</th>
@@ -37,6 +43,9 @@
 {% block scripts %}
   {{ super()  }}
   <script>
-    
+    function clear(word_id){
+      $('#id4').addClass('table-info');
+      alert("The function work ok");
+    }
   </script>
 {% endblock %}

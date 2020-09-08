@@ -9,18 +9,90 @@
 	var foreign_word;
 	var native_word;
 	var answer_client;
+	var words;
+	var words_answer=[];
+		
+	
+	let word = {
+		foreign_word: "",
+		native_word: "",
+		native_word_true: ""
+	};
+
+	$(window).load(function(){
+		//$('#button_true').addClass('disabled');
+		//$('#button_false').addClass('disabled');
+		
+
+
+	});
+	
+	function startTimer(){
+		$('#button_true').prop('disabled', false);
+		$('#button_false').prop('disabled', false);
+		$('#button_start').prop('disabled', true);
+		$('#button_true').prop('disabled', true);
+		$('#button_false').prop('disabled', true);
+
+
+		var time_game = 35;
+		var minutes;
+		var seconds;
+		var x2= parseFloat(document.getElementById("lineClass").getAttribute("x2"));
+
+
+		var timer_id = setInterval(function(){
+			if (time_game == 0){
+				$('#button_true').prop('disabled', true);
+				$('#button_false').prop('disabled', true);
+				$('#button_start').prop('disabled', false);
+
+				clearInterval(timer_id);
+				document.getElementById("lineClass").setAttribute("x2", parseFloat(120));
+				$.post('/words_errors',{
+					words: "Hello"
+				});
+
+
+			}
+			minutes = parseInt(time_game / 60);
+			seconds = parseInt(time_game % 60);
+
+			$('#timers_id').text(minutes+":"+seconds);  
+			
+
+			if (time_game % 10 == 0){
+	    		x2 = x2 -10;
+	    		document.getElementById("lineClass").setAttribute("x2", parseFloat(x2));
+			}
+
+			time_game = time_game - 1;
+
+		}, 1000);
+		setTimeout(timer_id,1);
+
+	}
 	function start(){
+
 		$.post('/get_words', {
 
 		}).done(function(response)
 		{
+			startTimer();
 			var result = response['words'];
 			answer_client = response['answer'];
 
-			foreign_word = result['foreign_language'];
-			native_word = result['native_language'];
-			$('#foreign_words').text(foreign_word);
-			$('#native_words').text(native_word);
+			//foreign_word = result['foreign_language'];
+			//native_word = result['native_language'];
+			//native_word_true = result['native_word_true'];
+			word.foreign_word = result['foreign_language'];
+			word.native_word = result['native_language'];
+			word.native_word_true = result['native_language_true'];
+			words_answer.push(word);
+		
+
+			$('#foreign_words').text(word.foreign_word);
+			$('#native_words').text(word.native_word);
 			$('#text_count_id').text(count);
 		}).fail(function(){
 			$('#foreign_language').text("Server problems");
@@ -54,6 +126,7 @@
 	    $('#textClass').text(temp_count);
 	    $('#count_id').text(count);
 	    $('#text_count_id').text(count);
+	   
 	    $.post('/get_words', {
 	      
 	      
@@ -62,10 +135,16 @@
 
 	        var result = response['words'];
 	        answer_client = response['answer'];
-	      	foreign_word = result['foreign_language'];
-	      	native_word = result['native_language'];
-	        $('#foreign_words').text(foreign_word);
-	        $('#native_words').text(native_word);
+	      	//foreign_word = result['foreign_language'];
+	      	//native_word = result['native_language'];
+	      	//native_word_true = result['native_word_true'];
+	      	word.foreign_word = result['foreign_language'];
+	      	word.native_word = result['native_language'];
+	      	word.native_word_true = result['native_word_true'];
+	      	words_answer.push(word);
+	      	
+	        $('#foreign_words').text(word.foreign_word);
+	        $('#native_words').text(word.native_word);
 	        
 
 	    }).fail(function(){
@@ -81,24 +160,66 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-1">
-			<a href="javascript:start();" class="btn btn-primary">Start</a>
-		</div>
+			<div>
+				<h2 id="timers_id" style="text-align:center;"></h2>
+				
+				
+			</div>
+			<svg width="180" height="56">
+				<style type="text/css">
+					@keyframes change_lines {
+						0% {
+							stroke:green;
+						}
+						20% {
+							stroke:blue;
+						}
+						40% {
+							stroke:yellow;
+						}
+						60% {
+							stroke:darkblue;
+						}
+						80% {
+							stroke:#1EABF2;
+						}
+						100% {
+							stroke:#BBDB19;
+						}
+					}
+					#lineClass{
+						animation-name: change_lines;
+						animation-duration:60s;
+						stroke: green;
+						stroke-width:7px;
+						stroke-linecap: round;
+
+					}
+				</style>
+				<line x1="10" y1="20" x2="120" y2="20" id="lineClass"></line>
+			</svg>
+			<a href="javascript:start();" class="btn btn-lg btn-primary" id="button_start">Start</a>
+			</div>
 		<div class="col-md-2 col-md-offset-4">
 				<div class="card w-75 border-primary">
         			<div class="card-body">
             		<h2 class="card-title" id="foreign_words"></h2>
             		<h2 class="card-text" id="native_words">1</h2>
-            		<a href="javascript:get_next_words(1);" class="btn btn-success">True</a>
-            		<a href="javascript:get_next_words(2);" class="btn btn-danger">False</a>
+            		<a href="javascript:get_next_words(1);" class="btn btn-lg btn-success"  id="button_true">True</a>
+            		<a href="javascript:get_next_words(2);" class="btn btn-lg btn-danger"  id="button_false">False</a>
    
         			</div>
         		</div>
        			
 			
+
+
+
+
        	
  
 		</div>
-		<div class="col-md-1">
+		<div class="col-md-3">
 			<svg viewbox="0 0 100 80" width="100" height="80">
 				<style type="text/css">
 					#textClass{
@@ -111,7 +232,7 @@
 			</svg>
 		</div>
 					
-        <div class="col-md-2 col-md-offset-2">
+        <div class="col-md-2">
        		<svg viewbox="0 0 400 700"    width="400" height="500">
        			<style type="text/css">
        				#classPoints {
@@ -126,7 +247,7 @@
   				<text fill="url(#polyline_id)" text-anchor="middle" x="70" y="80" id="text_count_id"></text>
 
     	</svg>
-       		<span>Count:</span>
+       		<p><span>Count:</span></p>
        		<p></p>
        </div>
 

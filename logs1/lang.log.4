@@ -1,4 +1,4 @@
-2020-08-20 23:07:06,365 ERROR: Exception on /get_words [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
+2020-09-06 13:44:01,245 ERROR: Exception on /get_words [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,57 +14,11 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 177, in get_words
-    user_words = Word(foreign_language=Word.query.get(i).foreign_language, native_language=Word.query.get(j).native_language)
-AttributeError: 'NoneType' object has no attribute 'native_language'
-2020-08-20 23:15:28,069 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-20 23:17:07,510 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-20 23:17:52,089 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-20 23:19:19,988 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-20 23:21:40,592 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-20 23:24:34,486 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-21 12:49:01,159 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-21 13:18:16,860 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-21 21:32:27,950 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 19:12:28,890 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 19:12:50,707 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 19:12:56,412 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 19:21:49,735 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 19:21:56,684 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 19:22:04,123 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 19:22:51,070 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 20:02:34,653 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 20:15:25,280 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 20:15:52,440 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 20:16:40,281 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 20:19:25,896 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 20:20:12,318 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 20:20:23,855 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 20:21:34,281 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 20:21:48,577 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 20:21:50,967 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 20:23:17,036 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 20:23:42,276 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 20:59:34,815 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 20:59:37,312 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 21:08:37,206 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 21:08:56,918 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 21:10:08,705 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 21:13:07,785 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 21:16:15,870 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-22 21:17:01,413 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-23 23:11:33,197 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-23 23:39:21,859 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-23 23:39:27,250 ERROR: Exception on /get_words [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
-Traceback (most recent call last):
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1283, in _execute_context
-    self.dialect.do_execute(
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 590, in do_execute
-    cursor.execute(statement, parameters)
-sqlite3.OperationalError: no such column: word.level
-
-The above exception was the direct cause of the following exception:
-
+  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 201, in get_words
+    user_words = Word(foreign_language=user_words_repeats[i].foreign_language, native_language = user_words_repeats[j].native_language, native_language_true = user_words_repearts[i].native_language)
+NameError: name 'user_words_repearts' is not defined
+2020-09-06 13:44:32,637 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 13:44:38,847 ERROR: Exception on /get_words [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -80,42 +34,55 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 174, in get_words
-    user_count_words = current_user.languages[0].words.count()-1
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/dynamic.py", line 335, in count
-    return self._clone(sess).count()
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3749, in count
-    return self.from_self(col).scalar()
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3469, in scalar
-    ret = self.one()
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3436, in one
-    ret = self.one_or_none()
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3405, in one_or_none
-    ret = list(self)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3481, in __iter__
-    return self._execute_and_instances(context)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3506, in _execute_and_instances
-    result = conn.execute(querycontext.statement, self._params)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1020, in execute
-    return meth(self, multiparams, params)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 298, in _execute_on_connection
-    return connection._execute_clauseelement(self, multiparams, params)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1133, in _execute_clauseelement
-    ret = self._execute_context(
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1323, in _execute_context
-    self._handle_dbapi_exception(
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1517, in _handle_dbapi_exception
-    util.raise_(
+  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 201, in get_words
+    user_words = Word(foreign_language=user_words_repeats[i].foreign_language, native_language = user_words_repeats[j].native_language, native_language_true = user_words_repeats[i].native_language)
+  File "<string>", line 4, in __init__
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/state.py", line 433, in _initialize_instance
+    manager.dispatch.init_failure(self, args, kwargs)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 68, in __exit__
+    compat.raise_(
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 178, in raise_
     raise exception
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1283, in _execute_context
-    self.dialect.do_execute(
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 590, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: word.level
-[SQL: SELECT count(*) AS count_1 
-FROM (SELECT word.id AS word_id, word.native_language AS word_native_language, word.foreign_language AS word_foreign_language, word.remarks AS word_remarks, word.level AS word_level, word.dictionary_id AS word_dictionary_id 
-FROM word 
-WHERE ? = word.dictionary_id) AS anon_1]
-[parameters: (14,)]
-(Background on this error at: http://sqlalche.me/e/e3q8)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/state.py", line 430, in _initialize_instance
+    return manager.original_init(*mixed[1:], **kwargs)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/ext/declarative/base.py", line 839, in _declarative_constructor
+    raise TypeError(
+TypeError: 'native_language_true' is an invalid keyword argument for Word
+2020-09-06 13:48:29,595 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 13:49:35,306 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 13:54:13,422 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 14:08:09,806 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 14:09:16,079 ERROR: Exception on /words_errors [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 234, in get_words_errors_games
+    return render_template('word_errors.html', title='Word Errors', words_answer=words_answer)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/jinja2/environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/jinja2/environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/jinja2/environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/jinja2/loaders.py", line 115, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/templating.py", line 60, in get_source
+    return self._get_source_fast(environment, template)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/templating.py", line 89, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: word_errors.html
+2020-09-06 14:10:24,887 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]

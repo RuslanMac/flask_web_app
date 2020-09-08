@@ -1,4 +1,4 @@
-2020-08-20 23:01:45,028 ERROR: Exception on /get_words [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
+2020-09-06 11:20:59,076 ERROR: Exception on /mywords/ [GET] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,10 +14,10 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 177, in get_words
-    user_words = Word(foreign_language=Word.query.get(i).foreign_language, native_language=Word.query.get(j).native_language)
-AttributeError: 'NoneType' object has no attribute 'foreign_language'
-2020-08-20 23:01:45,631 ERROR: Exception on /get_words [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
+  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 72, in mywords
+    dictionaryForm.foreign_languages.choices = [ language in  languages]
+UnboundLocalError: local variable 'language' referenced before assignment
+2020-09-06 11:21:03,732 ERROR: Exception on /mywords/ [GET] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -33,10 +33,12 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 177, in get_words
-    user_words = Word(foreign_language=Word.query.get(i).foreign_language, native_language=Word.query.get(j).native_language)
-AttributeError: 'NoneType' object has no attribute 'foreign_language'
-2020-08-20 23:01:46,426 ERROR: Exception on /get_words [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
+  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 72, in mywords
+    dictionaryForm.foreign_languages.choices = [ language in  languages]
+UnboundLocalError: local variable 'language' referenced before assignment
+2020-09-06 11:21:43,155 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 11:23:01,906 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 11:33:56,554 ERROR: Exception on /mywords/ [GET] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -52,10 +54,11 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 177, in get_words
-    user_words = Word(foreign_language=Word.query.get(i).foreign_language, native_language=Word.query.get(j).native_language)
-AttributeError: 'NoneType' object has no attribute 'native_language'
-2020-08-20 23:01:46,685 ERROR: Exception on /get_words [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
+  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 72, in mywords
+    dictionaryForm.foreign_languages.choices = [ language in  languages]
+UnboundLocalError: local variable 'language' referenced before assignment
+2020-09-06 11:35:23,993 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 11:35:34,788 ERROR: Exception on /mywords/ [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -71,11 +74,15 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 182, in get_words
-    return jsonify({"words": user_words[i].serialize(),
-TypeError: 'Word' object is not subscriptable
-2020-08-20 23:02:12,737 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-20 23:02:17,546 ERROR: Exception on /get_words [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
+  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 77, in mywords
+    words = current_user.languages[language.id].words.paginate(
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/dynamic.py", line 323, in __getitem__
+    return self._clone(sess).__getitem__(index)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3154, in __getitem__
+    return list(self[item : item + 1])[0]
+IndexError: list index out of range
+2020-09-06 11:38:00,440 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 11:38:06,283 ERROR: Exception on /mywords/ [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -91,26 +98,19 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 177, in get_words
-    user_words = Word(foreign_language=Word.query.get(i).foreign_language, native_language=Word.query.get(j).native_language)
-AttributeError: 'NoneType' object has no attribute 'native_language'
-2020-08-20 23:02:17,682 ERROR: Exception on /get_words [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
-Traceback (most recent call last):
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 177, in get_words
-    user_words = Word(foreign_language=Word.query.get(i).foreign_language, native_language=Word.query.get(j).native_language)
-AttributeError: 'NoneType' object has no attribute 'native_language'
-2020-08-20 23:06:58,069 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 77, in mywords
+    words = current_user.languages.filter_by(language_id = language.id).words.paginate(
+AttributeError: 'BaseQuery' object has no attribute 'words'
+2020-09-06 11:38:25,160 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 11:48:48,125 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 11:57:26,559 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 12:08:48,983 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 12:10:10,111 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 12:16:26,162 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 12:23:29,538 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 12:24:26,736 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 12:24:43,312 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 12:26:46,825 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 12:27:57,147 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 12:32:45,162 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 13:39:18,819 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]

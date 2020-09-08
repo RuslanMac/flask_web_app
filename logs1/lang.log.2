@@ -1,13 +1,4 @@
-2020-08-23 23:40:01,474 ERROR: Exception on /get_words [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
-Traceback (most recent call last):
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1283, in _execute_context
-    self.dialect.do_execute(
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 590, in do_execute
-    cursor.execute(statement, parameters)
-sqlite3.OperationalError: no such column: word.level
-
-The above exception was the direct cause of the following exception:
-
+2020-09-06 14:58:55,818 ERROR: Exception on /words_errors [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -23,55 +14,11 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 174, in get_words
-    user_count_words = current_user.languages[0].words.count()-1
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/dynamic.py", line 335, in count
-    return self._clone(sess).count()
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3749, in count
-    return self.from_self(col).scalar()
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3469, in scalar
-    ret = self.one()
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3436, in one
-    ret = self.one_or_none()
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3405, in one_or_none
-    ret = list(self)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3481, in __iter__
-    return self._execute_and_instances(context)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3506, in _execute_and_instances
-    result = conn.execute(querycontext.statement, self._params)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1020, in execute
-    return meth(self, multiparams, params)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 298, in _execute_on_connection
-    return connection._execute_clauseelement(self, multiparams, params)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1133, in _execute_clauseelement
-    ret = self._execute_context(
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1323, in _execute_context
-    self._handle_dbapi_exception(
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1517, in _handle_dbapi_exception
-    util.raise_(
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 178, in raise_
-    raise exception
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1283, in _execute_context
-    self.dialect.do_execute(
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 590, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: word.level
-[SQL: SELECT count(*) AS count_1 
-FROM (SELECT word.id AS word_id, word.native_language AS word_native_language, word.foreign_language AS word_foreign_language, word.remarks AS word_remarks, word.level AS word_level, word.dictionary_id AS word_dictionary_id 
-FROM word 
-WHERE ? = word.dictionary_id) AS anon_1]
-[parameters: (14,)]
-(Background on this error at: http://sqlalche.me/e/e3q8)
-2020-08-23 23:40:02,123 ERROR: Exception on /get_words [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
-Traceback (most recent call last):
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1283, in _execute_context
-    self.dialect.do_execute(
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 590, in do_execute
-    cursor.execute(statement, parameters)
-sqlite3.OperationalError: no such column: word.level
-
-The above exception was the direct cause of the following exception:
-
+  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 234, in get_words_errors_games
+    words_result = words_answer['words']
+TypeError: 'NoneType' object is not subscriptable
+2020-09-06 15:02:51,614 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 15:03:39,866 ERROR: Exception on /words_errors [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -87,52 +34,96 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 174, in get_words
-    user_count_words = current_user.languages[0].words.count()-1
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/dynamic.py", line 335, in count
-    return self._clone(sess).count()
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3749, in count
-    return self.from_self(col).scalar()
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3469, in scalar
-    ret = self.one()
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3436, in one
-    ret = self.one_or_none()
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3405, in one_or_none
-    ret = list(self)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3481, in __iter__
-    return self._execute_and_instances(context)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3506, in _execute_and_instances
-    result = conn.execute(querycontext.statement, self._params)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1020, in execute
-    return meth(self, multiparams, params)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 298, in _execute_on_connection
-    return connection._execute_clauseelement(self, multiparams, params)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1133, in _execute_clauseelement
-    ret = self._execute_context(
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1323, in _execute_context
-    self._handle_dbapi_exception(
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1517, in _handle_dbapi_exception
-    util.raise_(
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 178, in raise_
-    raise exception
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1283, in _execute_context
-    self.dialect.do_execute(
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 590, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: word.level
-[SQL: SELECT count(*) AS count_1 
-FROM (SELECT word.id AS word_id, word.native_language AS word_native_language, word.foreign_language AS word_foreign_language, word.remarks AS word_remarks, word.level AS word_level, word.dictionary_id AS word_dictionary_id 
-FROM word 
-WHERE ? = word.dictionary_id) AS anon_1]
-[parameters: (14,)]
-(Background on this error at: http://sqlalche.me/e/e3q8)
-2020-08-23 23:40:39,551 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-23 23:40:46,346 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-23 23:41:01,238 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-23 23:41:06,058 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-23 23:48:04,926 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-23 23:50:16,609 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-23 23:54:06,273 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-23 23:54:22,790 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-24 00:07:35,983 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
-2020-08-24 00:08:06,978 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 233, in get_words_errors_games
+    words_answer = request.get_json()['words']
+TypeError: 'NoneType' object is not subscriptable
+2020-09-06 15:04:53,731 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 15:05:34,413 ERROR: Exception on /words_errors [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 234, in get_words_errors_games
+    words_result = words_answer['words_answerxp']
+TypeError: 'NoneType' object is not subscriptable
+2020-09-06 15:05:44,573 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 15:06:24,506 ERROR: Exception on /words_errors [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 234, in get_words_errors_games
+    words_result = words_answer['words_answer']
+TypeError: 'NoneType' object is not subscriptable
+2020-09-06 15:06:42,615 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 15:07:22,966 ERROR: Exception on /words_errors [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 235, in get_words_errors_games
+    return render_template('word_errors.html', title='Word Errors', words_answer=words_result)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/macbook/lang/flask_web_app/app/templates/word_errors.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
+  File "/Users/macbook/lang/flask_web_app/app/templates/base.html", line 2, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block "body"
+    {% block content -%}
+  File "/Users/macbook/lang/flask_web_app/app/templates/base.html", line 52, in block "content"
+    {% block app_content %}{% endblock %}
+  File "/Users/macbook/lang/flask_web_app/app/templates/word_errors.html", line 8, in block "app_content"
+    <th scope="col">{{ words_answer[0].foreign_word }} </th>
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/jinja2/environment.py", line 471, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: None has no element 0
+2020-09-06 15:07:57,611 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-06 15:09:08,722 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]

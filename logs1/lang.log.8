@@ -1,4 +1,4 @@
-2020-08-20 22:55:13,552 ERROR: Exception on /get_words [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
+2020-09-03 00:40:36,669 ERROR: Exception on /games [GET] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,10 +14,48 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 177, in get_words
-    user_words = Word(foreign_language=Word.query.get(i).foreign_language, native_language=Word.query.get(j).native_language)
-AttributeError: 'NoneType' object has no attribute 'foreign_language'
-2020-08-20 22:55:13,953 ERROR: Exception on /get_words [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
+  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 117, in games
+    return render_template('games.html',title = 'Games')
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/macbook/lang/flask_web_app/app/templates/games.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/Users/macbook/lang/flask_web_app/app/templates/base.html", line 2, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block "body"
+    {% block content -%}
+  File "/Users/macbook/lang/flask_web_app/app/templates/base.html", line 52, in block "content"
+    {% block app_content %}{% endblock %}
+  File "/Users/macbook/lang/flask_web_app/app/templates/games.html", line 21, in block "app_content"
+    <a href="{{ url_for('associate_game') }}" class="btn btn-primary">Play now</a>
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2216, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/helpers.py", line 357, in url_for
+    rv = url_adapter.build(
+  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/werkzeug/routing.py", line 2179, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'associate_game'. Did you mean 'translate_text' instead?
+2020-09-03 00:41:22,800 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-03 00:44:00,683 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-03 00:44:05,584 ERROR: Exception on /mywords/ [GET] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -33,10 +71,11 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 177, in get_words
-    user_words = Word(foreign_language=Word.query.get(i).foreign_language, native_language=Word.query.get(j).native_language)
-AttributeError: 'NoneType' object has no attribute 'native_language'
-2020-08-20 22:55:14,114 ERROR: Exception on /get_words [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
+  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 75, in mywords
+    if form.validate_on_submit():
+NameError: name 'form' is not defined
+2020-09-03 00:44:28,109 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-03 00:44:31,228 ERROR: Exception on /mywords/ [GET] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -52,10 +91,13 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 177, in get_words
-    user_words = Word(foreign_language=Word.query.get(i).foreign_language, native_language=Word.query.get(j).native_language)
-AttributeError: 'NoneType' object has no attribute 'native_language'
-2020-08-20 22:56:20,098 ERROR: Exception on /get_words [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
+  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 78, in mywords
+    words = current_user.language.words.paginate(
+AttributeError: 'Language' object has no attribute 'words'
+2020-09-03 00:46:31,371 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-03 00:47:39,799 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-03 00:57:12,829 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]
+2020-09-03 00:57:18,215 ERROR: Exception on /edit_profile [GET] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -71,44 +113,9 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 182, in get_words
-    return jsonify(user_words[i].serialize(),answer)
-TypeError: 'Word' object is not subscriptable
-2020-08-20 22:56:20,657 ERROR: Exception on /get_words [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
-Traceback (most recent call last):
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 177, in get_words
-    user_words = Word(foreign_language=Word.query.get(i).foreign_language, native_language=Word.query.get(j).native_language)
-AttributeError: 'NoneType' object has no attribute 'foreign_language'
-2020-08-20 22:56:20,982 ERROR: Exception on /get_words [POST] [in /Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py:1891]
-Traceback (most recent call last):
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/Users/macbook/site12/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 177, in get_words
-    user_words = Word(foreign_language=Word.query.get(i).foreign_language, native_language=Word.query.get(j).native_language)
-AttributeError: 'NoneType' object has no attribute 'foreign_language'
+  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 98, in edit_profile
+    form.languages.choices = [(langauge.id, language.language) for language in languages]
+  File "/Users/macbook/lang/flask_web_app/app/routes.py", line 98, in <listcomp>
+    form.languages.choices = [(langauge.id, language.language) for language in languages]
+NameError: name 'langauge' is not defined
+2020-09-03 00:57:59,303 INFO: Lang startup [in /Users/macbook/lang/flask_web_app/app/__init__.py:32]

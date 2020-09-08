@@ -43,7 +43,8 @@ class Word(db.Model):
 	def serialize(self):
 		return {
 		'foreign_language': self.foreign_language,
-		'native_language': self.native_language
+		'native_language': self.native_language,
+		'native_language_true': self.native_language
 		}
 
 class Language(db.Model):

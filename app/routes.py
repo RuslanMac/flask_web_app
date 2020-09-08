@@ -9,17 +9,15 @@ from guess_language import guess_language
 import random
 from flask_babel import _
 
-
-NEWSAPI = app.config['NEWSAPI']
 @app.route('/')
 @app.route('/index')
 @login_required
 def index():
 	NEWSAPI = app.config['NEWSAPI']
 	
+	language = Language.query.filter_by(id = current_user.language_id).first().lit
 
-	newsapi = NEWSAPI.get_top_headlines(country='us')
-	
+	newsapi = NEWSAPI.get_top_headlines(country="ru")
 	return render_template('index.html', title='Home'  , user = current_user.username, newsapi = newsapi['articles']  )
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -71,16 +69,30 @@ def mywords():
 	dictionaries = current_user.languages
 	languages_id = [language.language_id for language in dictionaries]
 	languages = [Language.query.filter_by(id=language_id).first() for language_id in languages_id]
-	dictionaryForm.foreign_languages.choices = [(language.id, language.language) for language in  languages]
+	dictionaryForm.foreign_languages.choices = [(language.id, language.language) for      language in  languages]
 	page = request.args.get('page',1,type=int)
-	words = current_user.languages[0].words.paginate(
+	if dictionaryForm.validate_on_submit():
+		languageid = dictionaryForm.foreign_languages.data
+		language = Language.query.filter_by(id = languageid).first()
+		words = current_user.languages.filter_by(language_id = language.id).first().words.paginate(
 		page, app.config['WORDS_PER_PAGE'], False)
-	foreign_languages = current_user.languages
-	next_url = url_for('mywords',page = words.next_num) \
-	if words.has_next else None
-	previous_url = url_for('mywords', page = words.prev_num) \
-	if words.has_prev else None  
-	return render_template('mywords.html',title = 'Dictionary', words = words.items, next_url = next_url , previous_url = previous_url, form=dictionaryForm)
+		foreign_languages = current_user.languages
+		next_url = url_for('mywords',page = words.next_num) \
+		if words.has_next else None
+		previous_url = url_for('mywords', page = words.prev_num) \
+		if words.has_prev else None  
+		return render_template('mywords.html',title = 'Dictionary', words = words.items, next_url = next_url , previous_url = previous_url, form=dictionaryForm)
+	else:
+
+		language_id=0
+		words = current_user.languages[language_id].words.paginate(
+			page, app.config['WORDS_PER_PAGE'], False)
+		foreign_languages = current_user.languages
+		next_url = url_for('mywords',page = words.next_num) \
+		if words.has_next else None
+		previous_url = url_for('mywords', page = words.prev_num) \
+		if words.has_prev else None  
+		return render_template('mywords.html',title = 'Dictionary', words = words.items, next_url = next_url , previous_url = previous_url, form=dictionaryForm)
 
 
 @app.route('/logout')
@@ -92,12 +104,23 @@ def logout():
 @login_required
 def edit_profile():
 	form = EditProfileForm(current_user.username)
+	languages = Language.query.all()
+	form.languages.choices = [(language.id, language.language) for language in languages]
 	if form.validate_on_submit():
-		current_user.username = form.username.data
-		db.session.commit()
-		dictionary = Dictionary(user_id = currrent_user.id, language_id = form.languages.data)
-		flash(_('Your changes have been saved!'))
-		return redirect(url_for('edit_profile'))
+		languages_id = [dictionary.language_id for dictionary in current_user.languages]
+		if form.languages.data not in languages_id:
+
+			current_user.username = form.username.data
+			language_id = form.languages.data
+
+			user_new_dictionary = Dictionary(user_id = current_user.id, language_id = language_id)
+			db.session.add(user_new_dictionary)
+			db.session.commit()
+			dictionary = Dictionary(user_id = current_user.id, language_id = form.languages.data)
+			flash(_('Your changes have been saved!'))
+			return redirect(url_for('edit_profile'))
+		else:
+			flash('The chosen language is alreay in your dictionary')
 	return render_template('edit_profile.html', title='Edit Profile', form = form)
 
 @app.route('/search')
@@ -171,16 +194,22 @@ def game_true_false():
 @app.route('/get_words', methods=['POST', 'GET'])
 @login_required
 def get_words():
-	user_count_words = current_user.languages[0].words.count()-1
-	user_words_repeats = current_user.languages[0].words.all()
-	i = random.randint(0,user_count_words)
-	j = random.randint(0,user_count_words)
-	user_words = Word(foreign_language=user_words_repeats[i].foreign_language, native_language = user_words_repeats[j].native_language)
+	words = [word for word in dictionary for dictionaries in current_user.languages.all()]
+	i = random.randint(0,len(words)-1)
+	j = random.randint(0,len(words)-1)
+	#user_words = Word(foreign_language=user_words_repeats[i].foreign_language, native_language = user_words_repeats[j].native_language, native_language_true = user_words_repeats[i].native_language)
+	user_word = {
+		"foreign_language": user_words_repeats[i].foreign_language,
+		"native_language": user_words_repeats[j].native_language,
+		"native_language_true": user_words_repeats[i].native_language
+	}
 	if i==j:
 		answer=1
 	else:
 		answer=2
-	return jsonify({"words": user_words.serialize(),
+	return jsonify({"words": {"foreign_language": user_words_repeats[i].foreign_language,
+							 "native_language": user_words_repeats[j].native_language,
+								"native_language_true": user_words_repeats[i].native_language},
 					"answer":	answer})    
 
 @app.route('/associate_game')
@@ -188,6 +217,21 @@ def get_words():
 def associate_game():
 	words = Word.query.filter_by(user_id = current_user.id).limit(7).all()
 	return render_template('associate_game.html', title='Associate Game1234', words = words)
+
+@app.route('/clear/word/<id>')
+@login_required
+def update_words():
+	language = Language.query.all()
+	user = User.query.all()
+
+
+
+@app.route('/words_errors', methods=['POST','GET'])
+@login_required
+def get_words_errors_games():
+	words_answer = request.form['words']
+	words_result = words_answer
+	return render_template('word_errors.html', title='Word Errors', words_answer=words_result)
 
 
 @app.route('/initPage', methods=['POST','GET'])
